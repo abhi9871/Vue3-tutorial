@@ -1,6 +1,26 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <img alt="Vue logo" src="./assets/logo.png">
+    <h2>{{ name }}</h2>
+    <div v-html="channel"></div>
+    <div v-bind:id="headingId">Heading</div>
+    <button v-bind:disabled="isDisabled">Bind</button>
+    <h3 class="underline">Underline Text</h3>
+    <h3 class="underline" v-bind:class="status">Status</h3>
+    <h3 v-bind:class="isPromoted && 'promoted'">Promoted Movie</h3>
+    <h3 v-bind:class="isSoldOut ? 'soldout' : 'new'">Sold Out</h3>
+    <h3 v-bind:class="['new', 'promoted']">Array Movie</h3>
+    <h3 v-bind:class="[isPromoted && 'promoted', isSoldOut ? 'new' : 'soldout']">Array Conditional Movie</h3>
+    <h3 v-bind:class="{
+      promoted: isPromoted,
+      new: !isSoldOut,
+      soldout: isSoldOut
+    }">Object Conditional Movie</h3>
+    <h3 v-bind:style="{color: highLightColor,
+    'font-size': headerSize + 'px'}">Inline Style</h3>
+    <h3 v-bind:style="headerStyleObject">Style Object</h3>
+    <div v-bind:style="[baseStyleObject, successStyleObject]">Success Style</div>
+    <div v-bind:style="[baseStyleObject, dangerStyleObject]">Danger Style</div>
+    <HelloWorld msg="Welcome to Your Vue.js App"/>
 </template>
 
 <script>
@@ -10,6 +30,38 @@ export default {
   name: 'App',
   components: {
     HelloWorld
+  },
+  data() {
+    return {
+      name: "Abhishek",
+      channel: "<b>Hello Vue World!</b>",
+      headingId: "heading",
+      isDisabled: true,
+      status: "success",
+      isPromoted: true,
+      isSoldOut: false,
+      highLightColor: "orange",
+      headerSize: 50,
+      headerStyleObject: {
+        color: 'orange',
+        fontSize: '50px',
+        padding: '20px'
+      },
+      baseStyleObject: {
+        fontSize: '50px',
+        padding: '20px',
+      },
+      successStyleObject: {
+        color: 'green',
+        backgroundColor: 'white',
+        border: '1px solid green'
+      },
+      dangerStyleObject: {
+        color: 'darkred',
+        backgroundColor: 'red',
+        border: '1px solid darkred'
+      }
+    } 
   }
 }
 </script>
@@ -23,4 +75,25 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
 }
+
+.underline {
+  text-decoration: underline;
+}
+
+.success {
+  color: green;
+}
+
+.promoted {
+  font-style: italic;
+}
+
+.new {
+  color: green;
+}
+
+.soldout {
+  color: red;
+}
+
 </style>
