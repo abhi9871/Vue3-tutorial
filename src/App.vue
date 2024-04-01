@@ -1,5 +1,15 @@
 <template>
     <img alt="Vue logo" src="./assets/logo.png">
+    <div v-show="showElement">Using v-show</div>
+    <template v-if="display">
+    <h2>Abhishek</h2>
+    <h2>Code</h2>
+    <h2>Vue</h2>
+  </template>
+    <h2 v-if="num===0">The number is zero.</h2>
+    <h2 v-else-if="num < 0">The number is negative.</h2>
+    <h2 v-else-if="num > 0">The number is positive.</h2>
+    <h2 v-else>Not a number.</h2>
     <h2>{{ name }}</h2>
     <div v-html="channel"></div>
     <div v-bind:id="headingId">Heading</div>
@@ -60,7 +70,10 @@ export default {
         color: 'darkred',
         backgroundColor: 'red',
         border: '1px solid darkred'
-      }
+      },
+      num: 0,
+      display: true,
+      showElement: true
     } 
   }
 }
